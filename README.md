@@ -21,8 +21,8 @@ can leave a message. No login is needed, only a name.
 
 ## Editing the event details
 
-In `index.html`, find the elements with `data-edit="time"` and `data-edit="venue"` and replace
-"To be announced" with the real time and venue.
+The date, time (7:00 PM), venue (RICOS, Bustos) and motif are in the "Join us as we celebrate"
+section of `index.html`.
 
 ## Music
 

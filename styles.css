@@ -379,9 +379,6 @@ body.is-open #invitation { opacity: 1; }
 .detail:last-child { border-bottom: 0; }
 .detail-label { font-size: .72rem; letter-spacing: .28em; text-transform: uppercase; color: var(--rose-deep); padding-top: 4px; text-align: left; }
 .detail-value { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; color: var(--plum); }
-.swatches { display: flex; gap: 6px; justify-content: flex-end; margin-top: 6px; }
-.sw { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--cream); box-shadow: 0 0 0 1px var(--blush); }
-.sw1 { background: var(--blush); } .sw2 { background: var(--rose); } .sw3 { background: var(--lavender); } .sw4 { background: var(--purple); }
 
 .age-counter { display: flex; justify-content: center; gap: 14px; margin-top: 48px; flex-wrap: wrap; }
 .age-counter div {
@@ -455,7 +452,6 @@ body.is-open #invitation { opacity: 1; }
 @media (max-width: 520px) {
   .section { padding: 72px 16px; }
   .detail { flex-direction: column; text-align: left; gap: 2px; }
-  .swatches { justify-content: flex-start; }
   .trait { padding: 20px 18px; gap: 16px; }
   .trait-num { width: 44px; height: 44px; font-size: 1rem; }
   .form-row { flex-direction: column-reverse; align-items: stretch; }
