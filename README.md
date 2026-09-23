@@ -2,7 +2,8 @@
 
 A digital 30th birthday invitation for **Katherine Joy C. Estrella** (born September 23, 1996).
 
-Guests open an envelope, which reveals the invitation: her portrait, Proverbs 31:25 and a quote from
+Guests open an envelope (with floating hearts and flowers and background music that starts on open),
+which reveals the invitation: her portrait, Proverbs 31:25 and a quote from
 St. Catherine of Siena, who she is to everyone, the three things she is known for
 (masipag, masikap, may paninindigan), the event details, and a **Words of Blessing** wall where anyone
 can leave a message. No login is needed, only a name.
@@ -13,14 +14,23 @@ can leave a message. No login is needed, only a name.
 | --- | --- |
 | `index.html` | The page and all of its text |
 | `styles.css` | Blush pink and purple theme |
-| `script.js` | Envelope animation, confetti, age counter, messages |
-| `config.js` | Optional shared-messages backend (Firebase) |
+| `script.js` | Envelope animation, floating hearts and flowers, confetti, age counter, messages |
+| `music.js` | Background music: a built-in music-box "Happy Birthday", or your own song |
+| `config.js` | Music file and optional shared-messages backend (Firebase) |
 | `assets/img/` | Photos |
 
 ## Editing the event details
 
 In `index.html`, find the elements with `data-edit="time"` and `data-edit="venue"` and replace
 "To be announced" with the real time and venue.
+
+## Music
+
+Music starts when a guest opens the envelope, and a button in the corner pauses or resumes it.
+By default the page plays a soft music-box "Happy Birthday to You" that the browser generates itself,
+so there is no audio file to host. To use a different song, add the file (for example
+`assets/music/song.mp3`) and set `music: "assets/music/song.mp3"` in `config.js`. Only use a song you
+have the right to share.
 
 ## Publishing with GitHub Pages
 

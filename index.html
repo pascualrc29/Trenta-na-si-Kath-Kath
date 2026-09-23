@@ -18,22 +18,35 @@
 
   <!-- ============ ENVELOPE ============ -->
   <section id="envelope-screen" aria-label="Invitation envelope">
-    <div class="sparkles" aria-hidden="true"></div>
-    <p class="env-hint-top">You've got mail</p>
+    <div class="blobs" aria-hidden="true"><i></i><i></i><i></i></div>
 
-    <button id="envelope" class="envelope" type="button" aria-label="Open the invitation">
-      <span class="env-back"></span>
-      <span class="env-letter">
-        <span class="letter-script">Trentahin na si</span>
-        <span class="letter-name">Kath Kath</span>
-      </span>
-      <span class="env-front"></span>
-      <span class="env-flap"></span>
-      <span class="env-seal"><span>30</span></span>
-    </button>
+    <div class="env-card">
+      <p class="env-kicker">A special invitation</p>
+      <p class="env-hint-top">for you, with love</p>
 
-    <p class="env-to">For you, with love</p>
-    <p class="env-hint">Tap the envelope to open</p>
+      <button id="envelope" class="envelope" type="button" aria-label="Open the invitation">
+        <span class="env-back"></span>
+        <span class="env-letter">
+          <span class="letter-script">Trentahin na si</span>
+          <span class="letter-name">Kath Kath</span>
+          <span class="letter-date">09 · 23 · 2026</span>
+        </span>
+        <span class="env-front">
+          <span class="env-address">Katherine Joy turns 30</span>
+        </span>
+        <span class="env-flap"></span>
+        <span class="env-seal" aria-hidden="true">
+          <svg viewBox="0 0 32 29"><path d="M16 29 2.6 15.8A8.2 8.2 0 0 1 16 5.2a8.2 8.2 0 0 1 13.4 10.6Z"/></svg>
+          <b>30</b>
+        </span>
+      </button>
+
+      <button id="open-btn" class="open-pill" type="button">
+        <svg viewBox="0 0 32 29" aria-hidden="true"><path d="M16 29 2.6 15.8A8.2 8.2 0 0 1 16 5.2a8.2 8.2 0 0 1 13.4 10.6Z"/></svg>
+        Open invitation
+      </button>
+      <p class="env-hint">Turn your sound on ♪</p>
+    </div>
   </section>
 
   <!-- ============ INVITATION ============ -->
@@ -202,9 +215,16 @@
     </footer>
   </main>
 
+  <div id="floaties" aria-hidden="true"></div>
   <div id="confetti" aria-hidden="true"></div>
 
+  <button id="music-btn" class="music-btn" type="button" aria-label="Pause music" aria-pressed="true" hidden>
+    <span class="music-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18.5a3 3 0 1 1-2-2.83V5l12-2v12.5a3 3 0 1 1-2-2.83V7.3l-8 1.35Z"/></svg></span>
+    <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+
   <script src="config.js"></script>
+  <script src="music.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

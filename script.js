@@ -8,23 +8,49 @@
   var envelope = document.getElementById("envelope");
   var invitation = document.getElementById("invitation");
 
-  /* ---------------- Envelope ---------------- */
-  (function sparkles() {
-    var host = document.querySelector(".sparkles");
-    for (var i = 0; i < 40; i++) {
-      var s = document.createElement("i");
-      s.style.left = Math.random() * 100 + "%";
-      s.style.top = Math.random() * 100 + "%";
-      s.style.animationDelay = Math.random() * 3 + "s";
-      host.appendChild(s);
+  /* ---------------- Floating hearts & flowers ---------------- */
+  var HEART = '<svg viewBox="0 0 32 29"><path fill="COLOR" d="M16 29 2.6 15.8A8.2 8.2 0 0 1 16 5.2a8.2 8.2 0 0 1 13.4 10.6Z"/></svg>';
+  var FLOWER = '<svg viewBox="0 0 40 40"><g fill="COLOR">' +
+    '<ellipse cx="20" cy="9" rx="6.5" ry="9"/><ellipse cx="20" cy="31" rx="6.5" ry="9"/>' +
+    '<ellipse cx="9" cy="20" rx="9" ry="6.5"/><ellipse cx="31" cy="20" rx="9" ry="6.5"/>' +
+    '<ellipse cx="12.2" cy="12.2" rx="6" ry="8.5" transform="rotate(-45 12.2 12.2)"/>' +
+    '<ellipse cx="27.8" cy="27.8" rx="6" ry="8.5" transform="rotate(-45 27.8 27.8)"/>' +
+    '<ellipse cx="27.8" cy="12.2" rx="6" ry="8.5" transform="rotate(45 27.8 12.2)"/>' +
+    '<ellipse cx="12.2" cy="27.8" rx="6" ry="8.5" transform="rotate(45 12.2 27.8)"/>' +
+    '</g><circle cx="20" cy="20" r="5.5" fill="#fff4c7"/></svg>';
+  var TULIP = '<svg viewBox="0 0 40 40"><path fill="COLOR" d="M20 26c-7 0-11-5-11-12l5 4 6-10 6 10 5-4c0 7-4 12-11 12Z"/>' +
+    '<path d="M20 26v12" stroke="#9fb89a" stroke-width="2.4" stroke-linecap="round"/></svg>';
+  var FLOAT_COLORS = ["#e6a9c0", "#b98a93", "#cdb7de", "#9c7bbf", "#f3c6d0", "#fff8fa"];
+
+  (function floaties() {
+    var host = document.getElementById("floaties");
+    var count = window.innerWidth < 600 ? 16 : 26;
+    for (var i = 0; i < count; i++) {
+      var kind = i % 3;
+      var shape = kind === 0 ? HEART : kind === 1 ? FLOWER : TULIP;
+      var color = FLOAT_COLORS[Math.floor(Math.random() * FLOAT_COLORS.length)];
+      var el = document.createElement("span");
+      var d = 14 + Math.random() * 14;
+      el.className = "floaty";
+      el.innerHTML = shape.replace("COLOR", color);
+      el.style.setProperty("--x", Math.random() * 100 + "vw");
+      el.style.setProperty("--s", 14 + Math.random() * 22 + "px");
+      el.style.setProperty("--d", d + "s");
+      el.style.setProperty("--delay", -Math.random() * d + "s");
+      el.style.setProperty("--o", (0.45 + Math.random() * 0.45).toFixed(2));
+      el.style.setProperty("--spin", (Math.random() > 0.5 ? 1 : -1) * (10 + Math.random() * 20) + "s");
+      if (Math.random() > 0.5) el.firstChild.style.animationDirection = "alternate, reverse";
+      host.appendChild(el);
     }
   })();
 
+  /* ---------------- Envelope ---------------- */
   function openInvite() {
     if (body.classList.contains("is-open")) return;
     body.classList.add("is-open");
     invitation.setAttribute("aria-hidden", "false");
-    setTimeout(function () { confetti(90); }, 900);
+    Music.start(); // runs inside the click, so browsers allow autoplay
+    setTimeout(function () { confetti(90); heartBurst(24); }, 900);
     setTimeout(function () {
       body.classList.remove("is-sealed");
       document.getElementById("envelope-screen").setAttribute("aria-hidden", "true");
@@ -32,6 +58,31 @@
     }, 1700);
   }
   envelope.addEventListener("click", openInvite);
+  document.getElementById("open-btn").addEventListener("click", openInvite);
+
+  function heartBurst(n) {
+    var host = document.getElementById("confetti");
+    for (var i = 0; i < n; i++) {
+      var h = document.createElement("span");
+      h.className = "burst";
+      h.innerHTML = HEART.replace("COLOR", FLOAT_COLORS[i % 5]);
+      var a = (Math.PI * 2 * i) / n;
+      var r = 120 + Math.random() * 180;
+      h.style.setProperty("--tx", Math.cos(a) * r + "px");
+      h.style.setProperty("--ty", Math.sin(a) * r + "px");
+      h.style.animationDelay = Math.random() * 0.2 + "s";
+      host.appendChild(h);
+    }
+  }
+
+  /* ---------------- Music ---------------- */
+  var musicBtn = document.getElementById("music-btn");
+  musicBtn.addEventListener("click", function () {
+    var playing = Music.toggle();
+    musicBtn.classList.toggle("is-paused", !playing);
+    musicBtn.setAttribute("aria-pressed", String(playing));
+    musicBtn.setAttribute("aria-label", playing ? "Pause music" : "Play music");
+  });
 
   function confetti(n) {
     var host = document.getElementById("confetti");
